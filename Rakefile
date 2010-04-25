@@ -11,7 +11,7 @@ begin
     gem.authors = ["Yoji Shidara"]
 
     gem.add_dependency "sequel", ">= 3.10.0"
-    gem.add_dependency "sqlite3-ruby", ">= 1.2.5"
+    gem.add_dependency "sqlite3", ">= 1.2.5"
 
     gem.add_development_dependency "rspec", ">= 1.3.0"
   end
