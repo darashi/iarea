@@ -19,6 +19,8 @@ rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
 
+Jeweler::GemcutterTasks.new
+
 require 'spec/rake/spectask'
 Spec::Rake::SpecTask.new(:test) do |t|
   t.spec_files = FileList['test/**/*_test.rb']

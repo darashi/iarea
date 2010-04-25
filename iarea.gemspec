@@ -10,13 +10,15 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yoji Shidara"]
   s.date = %q{2010-04-26}
-  s.description = %q{A different and possibly longer explanation of}
+  s.description = %q{A library for DoCoMo Open Iarea.}
   s.email = %q{dara@shidara.net}
   s.extra_rdoc_files = [
     "README.rdoc"
   ]
   s.files = [
     ".gitignore",
+     "MIT-LICENSE",
+     "README.rdoc",
      "Rakefile",
      "VERSION",
      "db/iareadata.sqlite3",
@@ -31,7 +33,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.6.1}
-  s.summary = %q{open iarea}
+  s.summary = %q{A library for DoCoMo Open Iarea.}
   s.test_files = [
     "test/iarea/iarea_test.rb",
      "test/test_helper.rb"
