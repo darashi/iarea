@@ -4,8 +4,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "iarea"
-    gem.summary = "open iarea"
-    gem.description = "A different and possibly longer explanation of"
+    gem.summary = "A library for DoCoMo Open Iarea."
+    gem.description = "A library for DoCoMo Open Iarea."
     gem.email = "dara@shidara.net"
     gem.homepage = "http://github.com/darashi/iarea"
     gem.authors = ["Yoji Shidara"]
