@@ -1,0 +1,17 @@
+= Iarea
+
+A library for DoCoMo Open Iarea.
+
+= Example of use
+
+  require 'iarea'
+
+  area = Iarea::Area.find_by_lat_lng(43.0568397222222,141.3478975)
+  area.name # => "すすきの"
+  area.areacode # => "00208"
+
+= References
+
+http://www.nttdocomo.co.jp/service/imode/make/content/iarea/domestic/index.html
+
+db/iareadata.sqlite3 contains the data extracted from http://www.nttdocomo.co.jp/binary/archive/service/imode/make/content/iarea/domestic/iareadata.lzh .
