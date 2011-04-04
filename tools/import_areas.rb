@@ -20,8 +20,8 @@ db.create_table :zones do
   String :name
 end
 
-db.drop_table :prefs if db.table_exists?(:prefs)
-db.create_table :prefs do
+db.drop_table :prefectures if db.table_exists?(:prefectures)
+db.create_table :prefectures do
   primary_key :id
   String :name
   Integer :zone_id
@@ -39,12 +39,12 @@ db.create_table :areas do
   Integer :east
   Integer :north
   Integer :zone_id
-  Integer :pref_id
+  Integer :prefecture_id
   index :areaid
   index :subareaid
   index :areacode, :unique => true
   index :zone_id
-  index :pref_id
+  index :prefecture_id
 end
 
 db.transaction do
@@ -61,8 +61,8 @@ db.transaction do
   end
   # prefs
   data['prefs'].each_with_index do |pref, i|
-    $stderr.puts "  importing pref %d %s" % [i, pref['name']]
-    db[:prefs].insert(:id => i, :name => pref['name'], :zone_id => pref['zone'])
+    $stderr.puts "  importing prefecture %d %s" % [i, pref['name']]
+    db[:prefectures].insert(:id => i, :name => pref['name'], :zone_id => pref['zone'])
   end
   # areas
   data['areas'].each do |areacode, area|
@@ -78,7 +78,7 @@ db.transaction do
       :east => area['msEast'],
       :north => area['msNorth'],
       :zone_id => area['zone'],
-      :pref_id => area['pref']
+      :prefecture_id => area['pref']
     }
     db[:areas].insert(area)
   end
