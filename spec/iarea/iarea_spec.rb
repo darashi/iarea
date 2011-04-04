@@ -1,5 +1,5 @@
 # encoding: UTF-8
-require 'test_helper'
+require 'spec_helper'
 
 describe Iarea::Utils do
   it ".lat_lng_to_meshcode" do

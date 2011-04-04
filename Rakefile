@@ -10,10 +10,10 @@ begin
     gem.homepage = "http://github.com/darashi/iarea"
     gem.authors = ["Yoji Shidara"]
 
-    gem.add_dependency "sequel", ">= 3.10.0"
-    gem.add_dependency "sqlite3-ruby", ">= 1.2.5"
+    gem.add_dependency "sequel", ">= 3.22.0"
+    gem.add_dependency "sqlite3-ruby", ">= 1.3.3"
 
-    gem.add_development_dependency "rspec", ">= 1.3.0"
+    gem.add_development_dependency "rspec", ">= 2.5.0"
   end
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
@@ -21,11 +21,8 @@ end
 
 Jeweler::GemcutterTasks.new
 
-require 'spec/rake/spectask'
-Spec::Rake::SpecTask.new(:test) do |t|
-  t.spec_files = FileList['test/**/*_test.rb']
-  t.libs << 'test'
-
+require 'rspec/core/rake_task.rb'
+RSpec::Core::RakeTask.new(:test) do |t|
   t.verbose = true
 end
 
