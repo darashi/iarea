@@ -26,7 +26,9 @@ namespace :iarea do
           File.open("iareadata.lzh", "w") do |f|
             f.write URI(uri).read
           end
-          system "lha", "xf", "iareadata.lzh"
+          unless system("lha", "xf", "iareadata.lzh")
+            raise "lha failed"
+          end
         end
         ruby "./tools/import_meshes.rb", dir, "db/iareadata.sqlite3"
       end
