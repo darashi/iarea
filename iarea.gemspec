@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{iarea}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yoji Shidara"]
@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "lib/tasks/iarea.rake",
     "spec/iarea/iarea_spec.rb",
     "spec/spec_helper.rb",
+    "tools/import_areas.rb",
     "tools/import_meshes.rb"
   ]
   s.homepage = %q{http://github.com/darashi/iarea}
