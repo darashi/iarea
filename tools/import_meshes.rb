@@ -22,19 +22,6 @@ db.create_table :meshes do
   index :areacode
 end
 
-db.drop_table :areas if db.table_exists?(:areas)
-db.create_table :areas do
-  String :areaid
-  String :subareaid
-  String :areacode
-  String :name
-  Integer :west
-  Integer :south
-  Integer :east
-  Integer :north
-  index :areacode
-end
-
 db.transaction do
   meshes = db[:meshes]
   areas = db[:areas]
@@ -45,19 +32,9 @@ db.transaction do
       areacode = areaid + subareaid
 
       name.encode!("UTF-8")
-      # insert area
-      area = { :areaid => areaid,
-        :subareaid => subareaid,
-        :areacode => areacode,
-        :name => name,
-        :west => west,
-        :south => south,
-        :east => east,
-        :north => north }
-      areas.insert(area)
 
       mesh_data.pop if mesh_data.last.nil?
-      $stderr.puts "importing area %s %s" % [areacode, name]
+      $stderr.puts "  importing meshes %s %s" % [areacode, name]
       num_meshes = mesh_data.shift(7).map(&:to_i)
 
       expected_num_meshes = num_meshes.inject(&:+)
