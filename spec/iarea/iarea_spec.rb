@@ -16,21 +16,10 @@ describe Iarea::Area do
       Iarea::Area.find_by_lat_lng(43.0568397222222,141.3478975)
     end
 
-    it "#name" do
-      subject.name.should == "すすきの"
-    end
-
-    it "#areacode" do
-      subject.areacode.should == "00208"
-    end
-
-    it "#areaid" do
-      subject.areaid.should == "002"
-    end
-
-    it "#subareaid" do
-      subject.subareaid.should == "08"
-    end
+    its(:name) { should == "すすきの" }
+    its(:areacode) { should == "00208" }
+    its(:areaid) { should == "002" }
+    its(:subareaid) { should == "08" }
   end
 
   context "at out of Japan" do
