@@ -9,6 +9,8 @@ A library for DoCoMo Open Iarea.
   area = Iarea::Area.find_by_lat_lng(43.0568397222222,141.3478975)
   area.name # => "すすきの"
   area.areacode # => "00208"
+  area.zone.name # => "北海道"
+  area.prefecture.name # => "北海道"
 
 = References
 
