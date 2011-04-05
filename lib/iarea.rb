@@ -1,15 +1,16 @@
 require 'sequel'
+require 'ostruct'
 
 module Iarea
   DB = Sequel.sqlite(File.expand_path("../../db/iareadata.sqlite3", __FILE__))
 
-  class Area
-    attr_reader :areaid, :subareaid, :areacode, :name, :west, :south, :east, :north
+  class Area < OpenStruct
+    def prefecture
+      Prefecture.find(self.prefecture_id)
+    end
 
-    def initialize(data)
-      data.each do |k, v|
-        instance_variable_set("@#{k}", v)
-      end
+    def zone
+      Zone.find(self.zone_id)
     end
 
     class << self
@@ -17,8 +18,29 @@ module Iarea
         meshcodes = Utils.expand_meshcode(Utils.lat_lng_to_meshcode(lat, lng))
         area = DB[:meshes].where(:meshcode => meshcodes).join(:areas, :areacode => :areacode).first
         return nil if area.nil?
-        area[:name].force_encoding("UTF-8")
         new(area)
+      end
+    end
+  end
+
+  class Zone < OpenStruct
+    @@zones = []
+    class << self
+      def find(id)
+        @@zones[id] ||= new DB[:zones].where(:id => id).first
+      end
+    end
+  end
+
+  class Prefecture < OpenStruct
+    @@prefectures = []
+    def zone
+      Zone.find(self.zone_id)
+    end
+
+    class << self
+      def find(id)
+        @@prefectures[id] ||= new DB[:prefectures].where(:id => id).first
       end
     end
   end
