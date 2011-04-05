@@ -5,6 +5,7 @@ module Iarea
   DB = Sequel.sqlite(File.expand_path("../../db/iareadata.sqlite3", __FILE__))
 
   class Area < OpenStruct
+    @@areas = {}
     def prefecture
       Prefecture.find(self.prefecture_id)
     end
@@ -14,11 +15,15 @@ module Iarea
     end
 
     class << self
+      def find(areacode)
+        @@areas[areacode] ||= new DB[:areas].where(:areacode => areacode).first
+      end
+
       def find_by_lat_lng(lat, lng)
         meshcodes = Utils.expand_meshcode(Utils.lat_lng_to_meshcode(lat, lng))
-        area = DB[:meshes].where(:meshcode => meshcodes).join(:areas, :areacode => :areacode).first
+        area = DB[:meshes].where(:meshcode => meshcodes).select(:areacode).first
         return nil if area.nil?
-        new(area)
+        find(area[:areacode])
       end
     end
   end
@@ -28,6 +33,10 @@ module Iarea
     class << self
       def find(id)
         @@zones[id] ||= new DB[:zones].where(:id => id).first
+      end
+
+      def all
+        DB[:zones].select(:id).order(:id).all.map{ |z| find(z[:id]) }
       end
     end
   end
@@ -41,6 +50,10 @@ module Iarea
     class << self
       def find(id)
         @@prefectures[id] ||= new DB[:prefectures].where(:id => id).first
+      end
+
+      def all
+        DB[:prefectures].select(:id).order(:id).all.map{ |pr| find(pr[:id]) }
       end
     end
   end
@@ -80,10 +93,3 @@ module Iarea
     end
   end
 end
-
-=begin
-require 'sequel'
-db = Sequel.sqlite("iareadata.sqlite3")
-meshcodes = Iarea::Utils.expand_meshcode(meshcode)
-puts db[:meshes].where(:meshcode => meshcodes).join(:areas, :areacode => :areacode).first[:name]
-=end

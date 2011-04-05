@@ -31,6 +31,11 @@ describe Iarea::Area do
     end
   end
 
+  context "finding by id" do
+    subject { Iarea::Area.find("06003") }
+    its(:name) { should == "大井町" }
+  end
+
   context "at out of Japan" do
     subject do
       Iarea::Area.find_by_lat_lng(0,0)

@@ -20,4 +20,8 @@ describe Iarea::Zone do
       @a.should_not == @c
     end
   end
+
+  it '#all' do
+    Iarea::Zone.all.should == (0..8).map {|i| Iarea::Zone.find(i)}
+  end
 end

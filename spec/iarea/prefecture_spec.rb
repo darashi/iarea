@@ -23,4 +23,8 @@ describe Iarea::Prefecture do
       @a.should_not == @c
     end
   end
+
+  it '#all' do
+    Iarea::Prefecture.all.should == (0..46).map {|i| Iarea::Prefecture.find(i)}
+  end
 end
