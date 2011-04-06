@@ -60,6 +60,12 @@ module Iarea
       Zone.find(self.zone_id)
     end
 
+    def areas
+      DB[:areas].where(:prefecture_id => self.id).select(:areacode).order(:areacode).map do |area|
+        Area.find(area[:areacode])
+      end
+    end
+
     class << self
       def find(id)
         @@prefectures[id] ||= new DB[:prefectures].where(:id => id).first

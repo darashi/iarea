@@ -10,6 +10,14 @@ describe Iarea::Prefecture do
     end
   end
 
+  describe 'Okinawa' do
+    subject { Iarea::Prefecture.find(46) }
+    its(:name) { should == "沖縄" }
+    it do
+      subject.areas.map(&:name).should == ["那覇/浦添", "沖縄/名護", "宮古/石垣"]
+    end
+  end
+
   describe 'equivalence' do
     before do
       @a = Iarea::Prefecture.find(0)
