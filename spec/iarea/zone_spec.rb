@@ -11,6 +11,13 @@ describe Iarea::Zone do
     end
   end
 
+  describe 'Shikoku' do
+    subject { Iarea::Zone.find(7) }
+    it '#areas' do
+      subject.areas.map(&:name).should == ["高松市周辺", "東讃", "中讃", "西讃", "徳島市", "徳島県北部", "徳島県西部", "徳島県南部", "中予", "東予", "南予北部", "南予南部", "高知市", "高知県中部", "高知県東部", "高知県西部"]
+    end
+  end
+
   describe 'equivalence' do
     before do
       @a = Iarea::Zone.find(0)
