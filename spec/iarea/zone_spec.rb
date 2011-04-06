@@ -5,6 +5,10 @@ describe Iarea::Zone do
   describe 'Tokyo' do
     subject { Iarea::Zone.find(2) }
     its(:name) { should == "関東甲信越" }
+
+    it '#prefectures' do
+      subject.prefectures.map(&:name).should == ["栃木", "群馬", "茨城", "埼玉", "千葉", "東京", "神奈川", "山梨", "長野", "新潟"]
+    end
   end
 
   describe 'equivalence' do
