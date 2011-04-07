@@ -11,6 +11,7 @@ A library for DoCoMo Open Iarea.
   area.areacode # => "00208"
   area.zone.name # => "北海道"
   area.prefecture.name # => "北海道"
+  area.neighbors.map(&:name) #=> ["大通公園周辺", "大通東", "山鼻/藻岩周辺", "中島公園周辺"]
 
 = References
 
