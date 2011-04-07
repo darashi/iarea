@@ -47,6 +47,13 @@ db.create_table :areas do
   index :prefecture_id
 end
 
+db.drop_table :neighbors if db.table_exists?(:neighbors)
+db.create_table :neighbors do
+  String :areacode
+  String :neighbor_areacode
+  index :areacode
+end
+
 db.transaction do
   js = open(src_path, "r:cp932").read
   js.sub!(%r|^var IAreaDef=new function\(\)\{|, "")
@@ -68,7 +75,7 @@ db.transaction do
   data['areas'].each do |areacode, area|
     $stderr.puts "  importing area %s %s" % [areacode, area['name']]
     # insert area
-    area = {
+    hash = {
       :areaid => areacode[0..2],
       :subareaid => areacode[3..4],
       :areacode => areacode,
@@ -80,6 +87,10 @@ db.transaction do
       :zone_id => area['zone'],
       :prefecture_id => area['pref']
     }
-    db[:areas].insert(area)
+    db[:areas].insert(hash)
+
+    area['neighbors'].each do |neighbor|
+      db[:neighbors].insert({:areacode => areacode, :neighbor_areacode => neighbor})
+    end
   end
 end

@@ -14,6 +14,12 @@ module Iarea
       Zone.find(self.zone_id)
     end
 
+    def neighbors
+      DB[:neighbors].where(:areacode => areacode).select(:neighbor_areacode).map do |neighbor|
+        Area.find neighbor[:neighbor_areacode]
+      end
+    end
+
     class << self
       def find(areacode)
         @@areas[areacode] ||= new DB[:areas].where(:areacode => areacode).first

@@ -15,6 +15,9 @@ describe Iarea::Area do
     it do
       subject.zone.name.should == "北海道"
     end
+    it do
+      subject.neighbors.map(&:name).should == ["大通公園周辺", "大通東", "山鼻/藻岩周辺", "中島公園周辺"]
+    end
   end
 
   context "at 35.606022,139.734979" do
