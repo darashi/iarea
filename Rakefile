@@ -1,3 +1,4 @@
+require 'psych'
 load 'lib/tasks/iarea.rake'
 
 begin
