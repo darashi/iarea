@@ -2,7 +2,7 @@
 
 A library for DoCoMo Open Iarea.
 
-= Instration
+= Installation
 
   % gem install iarea
 
