@@ -1,8 +1,10 @@
 module Iarea
+  # Utility module
   module Utils
     LAT_WIDTH = [nil,2400000,300000,150000, 75000,37500,18750, 9375  ]
     LON_WIDTH = [nil,3600000,450000,225000,112500,56250,28125,14062.5]
     class << self
+      # Return 7th meshcode of given coordinates
       def lat_lng_to_meshcode(lat_deg, lng_deg)
         lat = (lat_deg * 3600000).to_i
         lng = (lng_deg * 3600000).to_i
@@ -26,6 +28,7 @@ module Iarea
         return meshcode
       end
 
+      # Return array of 1th..7th meshcodes for the given 7th meshcode
       def expand_meshcode(meshcode)
         (6..12).map do |n|
           meshcode[0, n]

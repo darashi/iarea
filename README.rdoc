@@ -2,6 +2,16 @@
 
 A library for DoCoMo Open Iarea.
 
+= Instration
+
+  % gem install iarea
+
+or add
+
+  gem 'iarea'
+
+on your Gemfile.
+
 = Example of use
 
   require 'iarea'
@@ -21,4 +31,4 @@ A library for DoCoMo Open Iarea.
 
 http://www.nttdocomo.co.jp/service/imode/make/content/iarea/domestic/index.html
 
-db/iareadata.sqlite3 contains the data extracted from http://www.nttdocomo.co.jp/binary/archive/service/imode/make/content/iarea/domestic/iareadata.lzh .
+db/iareadata.sqlite3 contains the data extracted from http://www.nttdocomo.co.jp/binary/archive/service/imode/make/content/iarea/domestic/iareadata.lzh and http://www.nttdocomo.co.jp/service/imode/make/content/iarea/domestic/map/js/iarea_def.js.
