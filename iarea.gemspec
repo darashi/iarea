@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{iarea}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yoji Shidara"]
-  s.date = %q{2011-04-07}
+  s.date = %q{2011-04-09}
   s.description = %q{A library for DoCoMo Open Iarea.}
   s.email = %q{dara@shidara.net}
   s.extra_rdoc_files = [
@@ -23,6 +23,10 @@ Gem::Specification.new do |s|
     "db/iareadata.sqlite3",
     "iarea.gemspec",
     "lib/iarea.rb",
+    "lib/iarea/area.rb",
+    "lib/iarea/prefecture.rb",
+    "lib/iarea/utils.rb",
+    "lib/iarea/zone.rb",
     "lib/tasks/iarea.rake",
     "spec/iarea/area_spec.rb",
     "spec/iarea/prefecture_spec.rb",
