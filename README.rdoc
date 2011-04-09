@@ -13,6 +13,10 @@ A library for DoCoMo Open Iarea.
   area.prefecture.name # => "北海道"
   area.neighbors.map(&:name) #=> ["大通公園周辺", "大通東", "山鼻/藻岩周辺", "中島公園周辺"]
 
+= Resources
+
+* {Documentation}[http://rdoc.info/github/darashi/iarea/master/frames]
+
 = References
 
 http://www.nttdocomo.co.jp/service/imode/make/content/iarea/domestic/index.html
