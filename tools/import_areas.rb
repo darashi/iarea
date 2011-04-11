@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# coding: utf-8
 
 require 'csv'
 require 'json'
@@ -87,6 +88,10 @@ db.transaction do
       :zone_id => area['zone'],
       :prefecture_id => area['pref']
     }
+    # fix .js problem
+    if hash[:name] == '新宿１?２丁目'
+      hash[:name] = '新宿１〜２丁目'
+    end
     db[:areas].insert(hash)
 
     area['neighbors'].each do |neighbor|
