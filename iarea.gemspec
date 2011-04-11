@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{iarea}
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yoji Shidara"]
-  s.date = %q{2011-04-09}
+  s.date = %q{2011-04-11}
   s.description = %q{A library for DoCoMo Open Iarea.}
   s.email = %q{dara@shidara.net}
   s.extra_rdoc_files = [
@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = %q{http://github.com/darashi/iarea}
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.1}
+  s.rubygems_version = %q{1.5.2}
   s.summary = %q{A library for DoCoMo Open Iarea.}
   s.test_files = [
     "spec/iarea/area_spec.rb",
