@@ -1,5 +1,6 @@
 require 'sequel'
 require 'ostruct'
+require_relative 'iarea/version'
 
 module Iarea # :nodoc:
   DB = Sequel.sqlite(File.expand_path("../../db/iareadata.sqlite3", __FILE__)) # :nodoc:
