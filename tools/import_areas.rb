@@ -64,13 +64,15 @@ db.transaction do
   end
   # zones
   data['zones'].each_with_index do |zone, i|
-    $stderr.puts "  importing zone %d %s" % [i, zone['name']]
-    db[:zones].insert(:id => i, :name => zone['name'])
+    id = i + 1
+    $stderr.puts "  importing zone %d %s" % [id, zone['name']]
+    db[:zones].insert(:id => id, :name => zone['name'])
   end
   # prefs
   data['prefs'].each_with_index do |pref, i|
-    $stderr.puts "  importing prefecture %d %s" % [i, pref['name']]
-    db[:prefectures].insert(:id => i, :name => pref['name'], :zone_id => pref['zone'])
+    id = i + 1
+    $stderr.puts "  importing prefecture %d %s" % [id, pref['name']]
+    db[:prefectures].insert(:id => id, :name => pref['name'], :zone_id => pref['zone'] + 1)
   end
   # areas
   data['areas'].each do |areacode, area|
@@ -85,8 +87,8 @@ db.transaction do
       :south => area['msSouth'],
       :east => area['msEast'],
       :north => area['msNorth'],
-      :zone_id => area['zone'],
-      :prefecture_id => area['pref']
+      :zone_id => area['zone'] + 1,
+      :prefecture_id => area['pref'] + 1
     }
     # fix .js problem
     if hash[:name] == '新宿１?２丁目'

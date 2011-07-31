@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe Iarea::Prefecture do
   describe 'Tokyo' do
-    subject { Iarea::Prefecture.find(12) }
+    subject { Iarea::Prefecture.find(13) }
     its(:name) { should == "東京" }
     it do
       subject.zone.name.should == "関東甲信越"
@@ -11,7 +11,7 @@ describe Iarea::Prefecture do
   end
 
   describe 'Okinawa' do
-    subject { Iarea::Prefecture.find(46) }
+    subject { Iarea::Prefecture.find(47) }
     its(:name) { should == "沖縄" }
     it do
       subject.areas.map(&:name).should == ["那覇/浦添", "沖縄/名護", "宮古/石垣"]
@@ -20,9 +20,9 @@ describe Iarea::Prefecture do
 
   describe 'equivalence' do
     before do
-      @a = Iarea::Prefecture.find(0)
-      @b = Iarea::Prefecture.find(0)
-      @c = Iarea::Prefecture.find(1)
+      @a = Iarea::Prefecture.find(1)
+      @b = Iarea::Prefecture.find(1)
+      @c = Iarea::Prefecture.find(2)
     end
     it do
       @a.should == @b
@@ -33,6 +33,6 @@ describe Iarea::Prefecture do
   end
 
   it '#all' do
-    Iarea::Prefecture.all.should == (0..46).map {|i| Iarea::Prefecture.find(i)}
+    Iarea::Prefecture.all.should == (1..47).map {|i| Iarea::Prefecture.find(i)}
   end
 end
