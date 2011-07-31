@@ -17,3 +17,4 @@ end
 task :default => :test
 
 require 'bundler/gem_tasks'
+load './lib/tasks/iarea.rake'
