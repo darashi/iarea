@@ -28,6 +28,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bundler
   iarea!
   rake
   rdoc
