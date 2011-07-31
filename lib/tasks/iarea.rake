@@ -14,7 +14,7 @@ namespace :iarea do
       tf = Tempfile.open("iarea")
       tf.write URI(uri).read
       tf.close
-      ruby "./tools/import_areas.rb", tf.path, "db/iareadata.sqlite3"
+      ruby "./tools/import_areas.rb", tf.path, "db/iareadata"
     end
 
     desc "fetch iareadata.lzh"
@@ -29,7 +29,7 @@ namespace :iarea do
             raise "lha failed"
           end
         end
-        ruby "./tools/import_meshes.rb", dir, "db/iareadata.sqlite3"
+        ruby "./tools/import_meshes.rb", dir, "db/iareadata"
       end
     end
   end

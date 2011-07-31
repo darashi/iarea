@@ -15,23 +15,24 @@ module Iarea
 
     # Neighbor areas of the area
     def neighbors
-      DB[:neighbors].where(:areacode => areacode).select(:neighbor_areacode).map do |neighbor|
-        Area.find neighbor[:neighbor_areacode]
-      end
+      JSON.parse(DB['n:'+self.areacode]).map{|areacode| Area.find areacode}
     end
 
     class << self
       # Find area by <tt>areacode</tt>
       def find(areacode)
-        @@areas[areacode] ||= new DB[:areas].where(:areacode => areacode).first
+        @@areas[areacode] ||= new JSON.parse(DB['a:'+areacode])
       end
 
       # Find area by latitude and longitude in degrees
       def find_by_lat_lng(lat, lng)
         meshcodes = Utils.expand_meshcode(Utils.lat_lng_to_meshcode(lat, lng))
-        area = DB[:meshes].where(:meshcode => meshcodes).select(:areacode).first
-        return nil if area.nil?
-        find(area[:areacode])
+        meshcodes.each do |meshcode|
+          if areacode = DB['m:'+meshcode]
+            return find(areacode)
+          end
+        end
+        return nil
       end
     end
   end

@@ -1,7 +1,7 @@
 module Iarea
   # Prefecture
   class Prefecture < OpenStruct
-    @@prefectures = []
+    @@prefectures = {}
 
     # Zone of the prefecture
     def zone
@@ -10,20 +10,19 @@ module Iarea
 
     # Areas in the prefecture
     def areas
-      DB[:areas].where(:prefecture_id => self.id).select(:areacode).order(:areacode).map do |area|
-        Area.find(area[:areacode])
-      end
+      self.areacodes.map{|areacode| Area.find areacode}
     end
 
     class << self
       # Find a prefecture by <tt>id</tt>
       def find(id)
-        @@prefectures[id] ||= new DB[:prefectures].where(:id => id).first
+        id = id.to_s
+        @@prefectures[id] ||= new JSON.parse(DB['p:'+id])
       end
 
       # All prefectures
       def all
-        DB[:prefectures].select(:id).order(:id).all.map{ |pr| find(pr[:id]) }
+        JSON.parse(DB['p']).map{ |id| find(id) }
       end
     end
   end

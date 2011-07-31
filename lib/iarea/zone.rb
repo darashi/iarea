@@ -1,30 +1,27 @@
 module Iarea
   class Zone < OpenStruct
-    @@zones = []
+    @@zones = {}
 
     # Prefectures in the zone
     def prefectures
-      DB[:prefectures].where(:zone_id => self.id).select(:id).order(:id).map do |prefecture|
-        Prefecture.find(prefecture[:id])
-      end
+      self.prefecture_ids.map {|prefecture_id| Prefecture.find prefecture_id}
     end
 
     # Areas in the zone
     def areas
-      DB[:areas].where(:zone_id => self.id).select(:areacode).order(:areacode).map do |area|
-        Area.find(area[:areacode])
-      end
+      self.areacodes.map {|areacode| Area.find areacode}
     end
 
     class << self
       # Find a zone by <tt>id</tt>
       def find(id)
-        @@zones[id] ||= new DB[:zones].where(:id => id).first
+        id = id.to_s
+        @@zones[id] ||= new JSON.parse(DB['z:'+id])
       end
 
       # All zones
       def all
-        DB[:zones].select(:id).order(:id).all.map{ |z| find(z[:id]) }
+        JSON.parse(DB['z']).map{ |id| find(id) }
       end
     end
   end
