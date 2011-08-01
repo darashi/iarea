@@ -16,13 +16,12 @@ module Iarea
     class << self
       # Find a prefecture by <tt>id</tt>
       def find(id)
-        id = id.to_s
-        @@prefectures[id] ||= new JSON.parse(DB['p:'+id])
+        @@prefectures[id.to_i] ||= new DB['prefecture'][id.to_i]
       end
 
       # All prefectures
       def all
-        JSON.parse(DB['p']).map{ |id| find(id) }
+        DB['prefecture_ids'].map{ |id| find(id) }
       end
     end
   end

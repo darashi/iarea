@@ -15,13 +15,12 @@ module Iarea
     class << self
       # Find a zone by <tt>id</tt>
       def find(id)
-        id = id.to_s
-        @@zones[id] ||= new JSON.parse(DB['z:'+id])
+        @@zones[id.to_i] ||= new DB['zone'][id.to_i]
       end
 
       # All zones
       def all
-        JSON.parse(DB['z']).map{ |id| find(id) }
+        DB['zone_ids'].map{|id| Zone.find id}
       end
     end
   end
