@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    iarea (0.3.0)
+    iarea (0.4.1)
       msgpack
 
 GEM

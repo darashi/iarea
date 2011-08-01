@@ -111,12 +111,12 @@ js_path = ARGV.shift
 iareadata_dir = ARGV.shift
 
 meta = import_metadata(js_path)
-File.open(File.join(db_dir, 'meta.msgpack'), 'w') do |f|
+File.open(File.join(db_dir, 'meta.msgpack'), 'w:ASCII-8BIT') do |f|
   f.write meta.to_msgpack
 end
 
 mesh_to_iarea_hash = import_meshes(iareadata_dir)
-File.open(File.join(db_dir, 'mesh.msgpack'), 'w') do |f|
+File.open(File.join(db_dir, 'mesh.msgpack'), 'w:ASCII-8BIT') do |f|
   f.write mesh_to_iarea_hash.to_msgpack
 end
 
