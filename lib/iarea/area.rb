@@ -21,7 +21,17 @@ module Iarea
     class << self
       # Find area by <tt>areacode</tt>
       def find(areacode)
-        @@areas[areacode] ||= new DB['area'][areacode]
+        if area = @@areas[areacode]
+          return area
+        else
+          if area_data = DB['area'][areacode]
+            area = new(area_data)
+            @@areas[areacode] = area
+            return area
+          else
+            return nil
+          end
+        end
       end
 
       # Find area by latitude and longitude in degrees
