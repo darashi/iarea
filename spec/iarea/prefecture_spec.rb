@@ -35,4 +35,10 @@ describe Iarea::Prefecture do
   it '#all' do
     Iarea::Prefecture.all.should == (1..47).map {|i| Iarea::Prefecture.find(i)}
   end
+
+  context 'finding by invalid id' do
+    it do
+      Iarea::Prefecture.find(-1).should be_nil
+    end
+  end
 end

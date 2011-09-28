@@ -22,15 +22,11 @@ module Iarea
       # Find area by <tt>areacode</tt>
       def find(areacode)
         if area = @@areas[areacode]
-          return area
+          area
+        elsif area_data = DB['area'][areacode]
+          @@areas[areacode] ||= new(area_data)
         else
-          if area_data = DB['area'][areacode]
-            area = new(area_data)
-            @@areas[areacode] = area
-            return area
-          else
-            return nil
-          end
+          nil
         end
       end
 

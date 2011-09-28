@@ -58,4 +58,10 @@ describe Iarea::Area do
     subject { Iarea::Area.find("06304") }
     its(:name) { should == "新宿１〜２丁目" }
   end
+
+  context 'finding by invalid id' do
+    it do
+      Iarea::Area.find(-1).should be_nil
+    end
+  end
 end

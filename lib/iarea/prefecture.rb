@@ -16,7 +16,13 @@ module Iarea
     class << self
       # Find a prefecture by <tt>id</tt>
       def find(id)
-        @@prefectures[id.to_i] ||= new DB['prefecture'][id.to_i]
+        if prefecture = @@prefectures[id.to_i]
+          prefecture
+        elsif prefecture_data = DB['prefecture'][id.to_i]
+          @@prefectures[id.to_i] ||= new(prefecture_data)
+        else
+          nil
+        end
       end
 
       # All prefectures

@@ -35,4 +35,10 @@ describe Iarea::Zone do
   it '#all' do
     Iarea::Zone.all.should == (1..9).map {|i| Iarea::Zone.find(i)}
   end
+
+  context 'finding by invalid id' do
+    it do
+      Iarea::Zone.find(-1).should be_nil
+    end
+  end
 end

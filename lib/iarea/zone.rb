@@ -15,7 +15,13 @@ module Iarea
     class << self
       # Find a zone by <tt>id</tt>
       def find(id)
-        @@zones[id.to_i] ||= new DB['zone'][id.to_i]
+        if zone = @@zones[id.to_i]
+          zone
+        elsif zone_data = DB['zone'][id.to_i]
+          @@zones[id.to_i] ||= new(zone_data)
+        else
+          nil
+        end
       end
 
       # All zones
